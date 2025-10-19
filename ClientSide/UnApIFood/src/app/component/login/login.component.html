@@ -1,0 +1,33 @@
+<div class="container">
+<div class="wrapper">
+      <div class="card-switch">
+         <label class="switch">
+           <input type="checkbox" class="toggle">
+           <span class="slider"></span>
+           <span class="card-side"></span>
+           <div class="flip-card__inner">
+              <div class="flip-card__front">
+                <img src="../../../assets/UniFood.png" height="150px">
+                 <div class="title">Log in</div>
+                 <form class="flip-card__form" action="">
+                    <input class="flip-card__input" [(ngModel)]="loginObj.email" name="email" placeholder="Email" type="Email" required>
+                    <input class="flip-card__input" [(ngModel)]="loginObj.password" name="password" placeholder="Password" type="Password" required>
+                    <button class="flip-card__btn" (click)="onLogin()" >Let`s go!</button>
+                 </form>
+              </div>
+              <div class="flip-card__back">
+               <img src="../../../assets/UniFood.png" height="150px">
+                 <div class="title">Sign up</div>
+                 <form class="flip-card__form" (ngSubmit)="onSignup()" action="">
+                    <input class="flip-card__input" placeholder="FirstName" [(ngModel)]="userObj.firstName" name="firstName" type="firstname" required>
+                    <input class="flip-card__input" placeholder="LastName" [(ngModel)]="userObj.lastName" name="lastName" type="lastname" required>
+                    <input class="flip-card__input" placeholder="Email" [(ngModel)]="userObj.email" name="email" type="email" required>
+                    <input class="flip-card__input" placeholder="Password" [(ngModel)]="userObj.password" name="password" type="password" required>
+                    <button class="flip-card__btn" type="submit" >Confirm!</button>
+                 </form>
+              </div>
+           </div>
+        </label>
+    </div>   
+</div>
+</div>

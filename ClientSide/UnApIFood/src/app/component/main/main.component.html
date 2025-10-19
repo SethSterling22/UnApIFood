@@ -1,0 +1,110 @@
+<div class="container">Bienvenido {{ user?.firstName }} {{ user?.lastName }} :D<br><br>
+
+    <div class="cards">
+        <div class="card" (click)="getFavoritePlaces(user?.id)" (click)="toggleTableFav()">
+            <div class="card2">
+            <p class="tip">Lugares de Comida Favoritos 💖</p>
+            </div>
+        </div>
+
+        <div class="card" (click)="getPlaces()" (click)="toggleTable()">
+            <div class="card2">
+            <p class="tip">Lugares de Comida 🍔</p>
+            </div>
+        </div>
+        
+        <!-- Bono -->
+        <div class="card" *ngIf="user?.role.toLowerCase() === 'admin'"  (click)="getAllUsers()" (click)="toggleUserTable()">
+            <div class="card2">
+            <p class="tip">Panel de Administrador ☝🏻🤓</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tabla de Lugares FAVORITOS -->
+    <div class="tablita" *ngIf="showFavoriteTable">
+        <table *ngIf="favoritePlaces && favoritePlaces.length > 0">
+        <thead>
+          <tr>
+            <th>Lugar</th>
+            <th>Universidad</th>
+            <th>Dirección</th>
+            <th>Horario</th>
+            <th>Precio Promedio</th>
+            <th>Descripción</th>
+            <th>Eliminar 💀</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let favorite of favoritePlaces">
+            <td>{{ favorite.placeInfo.name }}</td>
+            <td style=" display: flex; justify-content: center; height: auto;">{{ favorite.placeInfo.universityId }}</td>
+            <td>{{ favorite.placeInfo.address }}</td>
+            <td>{{ favorite.placeInfo.schedule }}</td>
+            <td style="display: flex; justify-content: center; height: auto;">{{ favorite.placeInfo.priceAverage }}</td>
+            <td>{{ favorite.placeInfo.description }}</td>
+            <td style="cursor: pointer; display: flex; justify-content: center; height: auto;" (click)="DeleteFavorite(favorite.id)">❌</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+        <!-- Tabla de Lugares -->
+        <div class="tablita" *ngIf="showTable">
+            <table *ngIf="places && places.length > 0">
+              <thead>
+                <tr>
+                  <th>Lugar</th>
+                  <th>Universidad</th>
+                  <th>Dirección</th>
+                  <th>Horario</th>
+                  <th>Precio Promedio</th>
+                  <th>Descripción</th>
+                  <th>Añadir ❓</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let place of places">
+                  <td>{{ place.name }}</td>
+                  <td style=" display: flex; justify-content: center; height: auto;">{{ place.universityId }}</td>
+                  <td>{{ place.address }}</td>
+                  <td>{{ place.schedule }}</td>
+                  <td style="display: flex; justify-content: center; height: auto;">{{ place.priceAverage }}</td>
+                  <td>{{ place.description }}</td>
+                  <td style="cursor: pointer; display: flex; justify-content: center; height: auto;" (click)="AddFavorite(place.id, user.id)">💖</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <div class="tablita" *ngIf="showUsersTable">
+            <table *ngIf="users && users.length > 0">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Rol</th>
+                  <th>Email</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Último inicio de sesión</th>
+                  <th>Registrado en</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.role }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.firstName }}</td>
+                  <td>{{ user.lastName }}</td>
+                  <td>{{ user.lastLogin }}</td>
+                  <td>{{ user.registeredOn }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+    </div>
